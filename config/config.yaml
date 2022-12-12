@@ -1,0 +1,77 @@
+#APP ENV
+app:
+  env: "release"
+  sysname: ${SYSNAME}
+  workername: ${WORKERNAME}
+  port: ${CONPORT}
+  runtime: "production"
+
+# 是否开启gizp压缩
+gzip:
+  enabled: false
+  level: -1
+
+#Nmid
+nmid:
+  serverhost: ${NMID_SERVERHOST}
+  serverport: ${NMID_SERVERPORT}
+  serveraddr: ${NMID_SERVERADDR}
+  skyreporterurl: ${NMID_SERVERADDR}
+
+#Redis
+redis:
+  enabled: false
+  address: "127.0.0.1:6379"
+  prefix: "msp"
+  expire: 604800
+  connect-timeout: 6000
+  read-timeout: 6000
+  write-timeout: 6000
+  pool-max-idel: 5000
+  pool-max-active: 20
+  pool-min-active: 10
+  pool-idle-timeout: 200000
+  password: ""
+
+#Mysql
+mysql:
+  enabled: false
+  dbname: "test"
+  prefix: "test_"
+  pool:
+    pool-min-cap: 10
+    pool-ex-cap: 5
+    pool-max-cap: 40
+    pool-idle-timeout: 3600
+    pool-wait-count: 1000
+    pool-wai-timeout: 30
+  write:
+    host: ${MYSQLHOST}
+    port: ${MYSQLPORT}
+    user: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
+
+#log
+log:
+  enabled: false
+  out-put: "redis"
+  debug: true
+  key: "msp_log"
+  redis:
+    host: "127.0.0.1"
+    port: 6379
+  app:
+    app-name: "go-api-frame"
+    app-version: "1.0.0"
+    language: "ch"
+
+code:
+  0: "成功"
+  1001: "成功"
+  1002: "验证签名失败"
+  1003: "服务器繁忙，请稍后再试"
+  1004: "请求参数错误"
+  1005: "用户未登录"
+  1006: "记录不存在"
+  1007: "记录已经存在"
+  1008: "时序查询错误"
