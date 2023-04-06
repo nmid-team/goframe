@@ -1,0 +1,13 @@
+## 此目录为nmid微服务woker相关功能
+
+```go
+.
+├── functions     //具体实现方法
+│   └── token.go  //token相关方法
+│   └── xxxxx.go
+│   └── xxxxx.go
+│       ...
+│       ...
+├── router.go     //具体方法路由，添加到nmid
+└── worker.go     //nmid worker初始化、运行
+```

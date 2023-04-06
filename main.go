@@ -1,10 +1,13 @@
 package main
 
 import (
-	"github.com/HughNian/nmid/pkg/logger"
+	"goframe/nmid"
+	"goframe/pkg/util"
 	"goframe/script"
 	"goframe/server"
 	"os"
+
+	"github.com/HughNian/nmid/pkg/logger"
 
 	"github.com/urfave/cli"
 	_ "go.uber.org/automaxprocs"
@@ -29,6 +32,8 @@ func main() {
 			Usage: "config file url",
 		},
 	}
+	nmidworker := nmid.InitWorker()
+	nmidworker.RunWorker()
 	app.Before = server.InitService
 	app.Action = func(c *cli.Context) error {
 		serverType := c.String("server")
@@ -36,15 +41,15 @@ func main() {
 		case "http":
 			server.RunHTTP()
 		case "worker":
-			server.RunWorker()
+			nmidworker.RunWorker()
 		case "http&worker":
 			{
-				server.RunWorker()
+				nmidworker.RunWorker()
 				server.RunHTTP()
 			}
 		default:
 			{
-				server.RunWorker()
+				nmidworker.RunWorker()
 				server.RunHTTP()
 			}
 		}
@@ -54,4 +59,8 @@ func main() {
 	if err != nil {
 		logger.Fatal("app run error:" + err.Error())
 	}
+
+	util.ListenAllGO(func() {
+		nmidworker.CloseWorker()
+	}, "goframe", "go over")
 }

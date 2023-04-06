@@ -1,15 +1,16 @@
-package worker
+package functions
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/HughNian/nmid/pkg/model"
 	wor "github.com/HughNian/nmid/pkg/worker"
 	"github.com/vmihailenco/msgpack"
-	"strings"
 )
 
-const (
-	FuncNameDemo = "Demo"
+var (
+	NameDemo = "Demo"
 )
 
 func Demo(job wor.Job) (ret []byte, err error) {
