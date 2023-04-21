@@ -29,7 +29,7 @@ func main() {
 		},
 		cli.StringFlag{
 			Name:  "c",
-			Value: "/root/config/config.yaml",
+			Value: "./config/config.yaml",
 			Usage: "config file url",
 		},
 	}
