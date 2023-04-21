@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/HughNian/nmid/pkg/logger"
+	"github.com/joho/godotenv"
 
 	"github.com/urfave/cli"
 	_ "go.uber.org/automaxprocs"
@@ -32,6 +33,8 @@ func main() {
 			Usage: "config file url",
 		},
 	}
+	godotenv.Load("./.env")
+
 	nmidworker := nmid.InitWorker()
 	nmidworker.RunWorker()
 	app.Before = server.InitService

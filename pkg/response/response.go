@@ -3,11 +3,12 @@ package response
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/HughNian/nmid/pkg/logger"
 	"goframe/constv"
 	"goframe/pkg/confer"
 	"goframe/pkg/util"
 	"net/http"
+
+	"github.com/HughNian/nmid/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )
@@ -99,8 +100,6 @@ func utilResponseJSONMarshal(t interface{}) ([]byte, error) {
 	err := encoder.Encode(t)
 	return buffer.Bytes(), err
 }
-
-// 创建错误码和statusCode的msp关系
 
 var statusCode = map[int]int{
 	constv.CODE_ERROR_OK:                  http.StatusOK,
