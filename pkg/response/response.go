@@ -102,7 +102,7 @@ func utilResponseJSONMarshal(t interface{}) ([]byte, error) {
 }
 
 var statusCode = map[int]int{
-	constv.CODE_ERROR_OK:                  http.StatusOK,
+	constv.CODE_SUCCESS_OK:                http.StatusOK,
 	constv.CODE_COMMON_OK:                 http.StatusOK,
 	constv.CODE_COMMON_SERVER_BUSY:        http.StatusInternalServerError,
 	constv.CODE_COMMON_PARAMS_INCOMPLETE:  http.StatusBadRequest,

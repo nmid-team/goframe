@@ -36,7 +36,6 @@ func main() {
 	godotenv.Load("./.env")
 
 	nmidworker := nmid.InitWorker()
-	nmidworker.RunWorker()
 	app.Before = server.InitService
 	app.Action = func(c *cli.Context) error {
 		serverType := c.String("server")

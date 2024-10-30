@@ -55,7 +55,7 @@ func startGo(mark string, ismain bool, f func(), overf func(isdebug bool)) {
 		atomic.AddInt64(&gonum, 1)
 	}
 	go func() {
-		logger.Info("start go: %s, ismain: %t", mark, ismain)
+		logger.Infof("start go: %s, ismain: %t", mark, ismain)
 		if ismain {
 			log.Println("start go:", mark)
 		}
@@ -68,7 +68,7 @@ func startGo(mark string, ismain bool, f func(), overf func(isdebug bool)) {
 			if ismain {
 				log.Println("end go:", mark, ",isdebug:", isdebug)
 			}
-			logger.Info("server over mark: %v ,ismain: %t", mark, ismain)
+			logger.Infof("server over mark: %v ,ismain: %t", mark, ismain)
 			if overf != nil {
 				func() { //防止结束任务debug
 					defer func() {
@@ -89,7 +89,7 @@ func startGo(mark string, ismain bool, f func(), overf func(isdebug bool)) {
 // 监听debug(true为有bug)
 func ListenDebug(mark string) bool {
 	if err := recover(); err != nil {
-		logger.Debug("[debug] %s  error: %s stack: %s", mark, err, string(debug.Stack()))
+		logger.Debugf("[debug] %s  error: %s stack: %s", mark, err, string(debug.Stack()))
 		return true
 	}
 	return false
@@ -115,7 +115,6 @@ func ListenAllGO(stopall func(), alarmGroup string, alarmContent string) {
 				// 发送报警
 				//SendAlarm(alarmGroup, alarmContent)
 			}
-			logger.Info("meeting over")
 			log.Println("all go over")
 			return
 		}
@@ -130,7 +129,7 @@ func ListenKill() {
 		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 		s := <-c
 		needAlarm = false
-		logger.Info("Server Exit: %s", s.String())
+		logger.Infof("Server Exit: %s", s.String())
 		atomic.StoreInt64(&goState, 1) //提示监听协程结束
 	}, nil)
 }

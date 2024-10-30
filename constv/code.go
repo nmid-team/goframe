@@ -2,7 +2,7 @@ package constv
 
 const (
 	//common
-	CODE_ERROR_OK                  = 0
+	CODE_SUCCESS_OK                = 0
 	CODE_COMMON_OK                 = 1001
 	CODE_COMMON_ACCESS_FAIL        = 1002
 	CODE_COMMON_SERVER_BUSY        = 1003
