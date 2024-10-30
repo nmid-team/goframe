@@ -16,5 +16,6 @@ func AddRouters(w *wor.Worker, workerName string) {
 		return
 	}
 
+	w.AddFunction(fmt.Sprintf("%s/%s", workerName, functions.NameHealthCheck), functions.HealthCheck)
 	w.AddFunction(fmt.Sprintf("%s/%s", workerName, functions.NameDemo), functions.Demo)
 }
